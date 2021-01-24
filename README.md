@@ -1,2 +1,2 @@
 # expressts
-Express with typescript project template
+Nodejs express api with typescript project template
