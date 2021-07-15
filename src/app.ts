@@ -1,14 +1,15 @@
 import * as express from 'express'
-import { Application } from 'express'
+
 
 class App {
-    public app: Application
+    public app: express.Application
     public port: number
 
     constructor(appInit: { port: number; middleWares: any; controllers: any; }) {
         this.app = express()
         this.port = appInit.port
 
+        this.logger()
         this.middlewares(appInit.middleWares)
         this.routes(appInit.controllers)
         this.assets()
@@ -40,6 +41,11 @@ class App {
         this.app.listen(this.port, () => {
             console.log(`App listening on the http://localhost:${this.port}`)
         })
+    }
+
+    private logger() {
+        const morgan = require('morgan')
+        this.app.use(morgan('combined'))
     }
 }
 

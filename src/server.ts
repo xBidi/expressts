@@ -1,9 +1,9 @@
 import App from './app'
 
 import * as bodyParser from 'body-parser'
-import loggerMiddleware from './middleware/logger'
+import exampleMiddleware from './shared/middleware/ExampleMiddleware'
 
-import UserController from "./users/UserController";
+import UserController from "./user/infrastructure/controller/UserController";
 
 const app = new App({
     port: +process.env.PORT || 8080,
@@ -13,7 +13,7 @@ const app = new App({
     middleWares: [
         bodyParser.json(),
         bodyParser.urlencoded({extended: true}),
-        loggerMiddleware
+        exampleMiddleware
     ]
 })
 
