@@ -24,7 +24,9 @@ class App {
 
     private routes(controllers: { forEach: (arg0: (controller: any) => void) => void; }) {
         controllers.forEach(controller => {
-            this.app.use('/', controller.router)
+            this.app.use('/', controller.router, function (err, req, res, next) {
+                res.json({error: err.message});
+            });
         })
     }
 
